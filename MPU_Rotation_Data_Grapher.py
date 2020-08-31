@@ -6,6 +6,8 @@ xdegree = []
 ydegree = []
 zdegree = []
 
+print("MPU Graph")
+
 with open('MPURotationData_0.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
