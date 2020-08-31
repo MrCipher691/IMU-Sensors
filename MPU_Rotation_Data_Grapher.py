@@ -6,8 +6,6 @@ xdegree = []
 ydegree = []
 zdegree = []
 
-print("This is change")
-
 with open('MPURotationData_0.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
