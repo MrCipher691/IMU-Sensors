@@ -1,8 +1,3 @@
-/*
-	MPU6050 Interfacing with Raspberry Pi
-	http://www.electronicwings.com
-*/
-
 #include <wiringPiI2C.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -76,7 +71,7 @@ int main(){
 		Gy = Gyro_y/131;
 		Gz = Gyro_z/131;
 		
-		printf("\n Gx=%.3f °/s\tGy=%.3f °/s\tGz=%.3f °/s\tAx=%.3f g\tAy=%.3f g\tAz=%.3f g\n",Gx,Gy,Gz,Ax,Ay,Az);
+		printf("\n Gx=%.3f ï¿½/s\tGy=%.3f ï¿½/s\tGz=%.3f ï¿½/s\tAx=%.3f g\tAy=%.3f g\tAz=%.3f g\n",Gx,Gy,Gz,Ax,Ay,Az);
 		delay(500);
 		
 	}
