@@ -2,6 +2,7 @@ import math
 import os
 import time
 import csv
+import pandas as pd
 
 def file_name_checker(name):
     existing_files = os.listdir("/home/pi/wwr")
@@ -32,30 +33,20 @@ file_name = str("AlphaComp_0.csv")
 #checker = file_name_checker(file_name)
 #file_name = the_negotiator(file_name,checker)
 f = open(file_name, 'w+')
+f.write("time,roll,pitch,yaw")
+f.write("\r\n")
 
 print("Data is being logged in: " + file_name)
 
-timestamp = []
-accel_scaled_x = []
-accel_scaled_y = []
-accel_scaled_z = []
-gyro_scaled_x = []
-gyro_scaled_y = []
-gyro_scaled_z = []
+df_data = pd.read_csv(r'MPURawData_0.csv')
 
-def read_all():
-    with open('MPURawData_0.csv','r') as csvfile:
-        plots = csv.reader(csvfile, delimiter=',')
-        for row in plots:
-            timestamp.append(float(row[0])) 
-            accel_scaled_x.append(float(row[1])) 
-            accel_scaled_y.append(float(row[2]))
-            accel_scaled_z.append(float(row[3]))
-            gyro_scaled_x.append(float(row[4])) 
-            gyro_scaled_y.append(float(row[5])) 
-            gyro_scaled_z.append(float(row[6]))
-
-read_all()
+timestamp = df_data['time'].values.tolist()
+accel_scaled_x = df_data['acceleration x'].values.tolist()
+accel_scaled_y = df_data['acceleration y'].values.tolist()
+accel_scaled_z = df_data['acceleration z'].values.tolist()
+gyro_scaled_x = df_data['gyroscope x'].values.tolist()
+gyro_scaled_y = df_data['gyroscope y'].values.tolist()
+gyro_scaled_z = df_data['gyroscope z'].values.tolist()
     
 def twos_compliment(val):
     if (val >= 0x8000):

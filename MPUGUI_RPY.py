@@ -3,7 +3,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 import math
 from pygame.locals import *
-import csv
+import pandas as pd
 
 SCREEN_SIZE = (800, 600)
 
@@ -31,18 +31,11 @@ def init():
     glEnable(GL_LIGHT0)
     glLightfv(GL_LIGHT0, GL_AMBIENT, (0.5, 0.5, 0.5, 1.0));
 
-time = []
-xdegree = []
-ydegree = []
-zdegree = []
-
-with open('MPURotationData_0.csv','r') as csvfile:
-    plots = csv.reader(csvfile, delimiter=',')
-    for row in plots:
-        time.append(float(row[0]))
-        xdegree.append(float(row[1]))
-        ydegree.append(float(row[2]))
-        zdegree.append(float(row[3]))
+df_data = pd.read_csv(r'AlphaComp_0.csv')
+time = df_data['time'].values.tolist()
+xdegree = df_data['roll'].values.tolist()
+ydegree = df_data['pitch'].values.tolist()
+zdegree = df_data['yaw'].values.tolist()
 
 def run():
     pygame.init()
@@ -138,7 +131,6 @@ def run():
         glPopMatrix()
         pygame.display.flip()
         #print (float(timer), -float(roll), float(pitch), -float(yaw))
-
         counter += 1
 
 
