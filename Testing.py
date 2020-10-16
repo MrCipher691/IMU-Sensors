@@ -31,7 +31,7 @@ for i in range(1, len(accelx)+1, 3):
     new_gyroy.append((gyroy[i-1]+gyroy[i]+gyroy[i+1])/3)
     new_gyroz.append((gyroz[i-1]+gyroz[i]+gyroz[i+1])/3)
 
-for i in range(409):
+for i in range(408):
     f.write("{:.4},{:.4},{:.4},{:.4},{:.4},{:.4},{:.4}".format(new_time[i], new_accelx[i], new_accely[i], new_accelz[i], new_gyrox[i], new_gyroy[i], new_gyroz[i]))
     f.write("\r\n")
 
