@@ -38,7 +38,7 @@ f.write("\r\n")
 
 print("Data is being logged in: " + file_name)
 
-df_data = pd.read_csv(r'MPURawData_0.csv')
+df_data = pd.read_csv(r'MPURawData_3.csv')
 
 timestamp = df_data['time'].values.tolist()
 accel_scaled_x = df_data['acceleration x'].values.tolist()
