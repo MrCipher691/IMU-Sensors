@@ -28,7 +28,7 @@ def the_negotiator(name, number):
     if number == 0:
         return name
 
-file_name = str("AlphaComp_0.csv")
+file_name = str("AlphaComp_1.csv")
 
 #checker = file_name_checker(file_name)
 #file_name = the_negotiator(file_name,checker)
@@ -38,7 +38,7 @@ f.write("\r\n")
 
 print("Data is being logged in: " + file_name)
 
-df_data = pd.read_csv(r'MPURawData_3.csv')
+df_data = pd.read_csv(r'MPURawData_0.csv')
 
 timestamp = df_data['time'].values.tolist()
 accel_scaled_x = df_data['acceleration x'].values.tolist()
@@ -91,6 +91,18 @@ gyro_total_z = (last_z) - gyro_offset_z
 x = 1
 limit = int(len(timestamp))
 while ( x < limit):
+
+    last_x = get_x_rotation(accel_scaled_x[x-1], accel_scaled_y[x-1], accel_scaled_z[x-1])
+    last_y = get_y_rotation(accel_scaled_x[x-1], accel_scaled_y[x-1], accel_scaled_z[x-1])
+    last_z = get_z_rotation(accel_scaled_x[x-1], accel_scaled_y[x-1], accel_scaled_z[x-1])
+
+    gyro_offset_x = gyro_scaled_x[x-1] 
+    gyro_offset_y = gyro_scaled_y[x-1] 
+    gyro_offset_z = gyro_scaled_z[x-1]
+
+    gyro_total_x = (last_x) - gyro_offset_x
+    gyro_total_y = (last_y) - gyro_offset_y
+    gyro_total_z = (last_z) - gyro_offset_z
 
     time.sleep(time_diff - 0.005)
     

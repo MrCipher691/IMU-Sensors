@@ -31,11 +31,13 @@ def init():
     glEnable(GL_LIGHT0)
     glLightfv(GL_LIGHT0, GL_AMBIENT, (0.5, 0.5, 0.5, 1.0));
 
-df_data = pd.read_csv(r'AlphaComp_0.csv')
+df_data = pd.read_csv(r'AlphaComp_1.csv')
+#df_data = pd.read_csv(r'MPURotationData_0.csv')
 time = df_data['time'].values.tolist()
 xdegree = df_data['roll'].values.tolist()
 ydegree = df_data['pitch'].values.tolist()
-zdegree = df_data['yaw'].values.tolist()
+#zdegree = df_data['yaw'].values.tolist()
+zdegree = ((df_data['time'].values)*0).tolist()
 
 def run():
     pygame.init()
