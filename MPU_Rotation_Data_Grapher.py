@@ -1,11 +1,20 @@
-import matplotlib.pyplot as plt
 import pandas as pd
+from pandas_datareader import data, wb
+import plotly.graph_objs as go
 
-df_mpu = pd.read_csv(r'MPURotationData_0.csv')
-df_alp = pd.read_csv(r'AlphaComp_2.csv')
+df = pd.read_csv('AlphaComp_0.csv')
 
-ax = plt.gca()
+fig = go.Figure()
 
-df_mpu.plot(kind='line', x='time', y='pitch',color='red', ax=ax)
-df_alp.plot(kind='line', x='newTime', y='pitch',color='orange', ax=ax)
-plt.show()
+fig.add_trace(go.Scatter(x=df['time'], y=df['roll'], name='ROLL'))
+fig.add_trace(go.Scatter(x=df['time'], y=df['pitch'], name='PITCH'))
+fig.update_xaxes(rangeslider_visible=True)
+
+fig.update_layout(
+    title="MPU6050 - ROLL, PITCH & YAW",
+    xaxis_title="TIME (SECONDS)",
+    yaxis_title="DEGREES",
+    legend_title="ROTATION TYPE"
+)
+
+fig.show()
